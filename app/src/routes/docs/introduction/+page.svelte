@@ -99,6 +99,14 @@
 					Yes! Neel UI is open source and free to use. You can use it in your personal and commercial projects.
 					Please let us know if you build something cool with Neel UI, we would love to see it!
 				</p>
+				<h3 class="text-xl mt-4 font-semibold">
+					Why's the dark mode so finicky?
+				</h3>
+				<p class="text-lg mt-4">
+					For the documentation website implementation, I wanted to get it out as fast as possible so you can preview
+					dark mode and light mode components. We will soon integrate `mode-watcher` and will make it seem very seamless.
+					For now, you can toggle dark mode by clicking the moon icon in the top right corner. 
+				</p>
 			</div>
 		</main>
 		<div

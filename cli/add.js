@@ -31,9 +31,9 @@ async function downloadDirectory(user, repo, directoryPath, localDirectory) {
 }
 
 async function ensureEssentialComponents(user, repo, baseLocalDirectory, additionalComponents = []) {
-    const essentialComponents = ['popover', 'typography', ...additionalComponents];
+    const essentialComponents = ['blur', 'popover', 'spinner', ...additionalComponents];
     for (const componentName of essentialComponents) {
-        const directoryPath = `src/lib/components/neel-ui/${componentName}`;
+        const directoryPath = `components/${componentName}`;
         const localDirectory = path.join(baseLocalDirectory, componentName);
         await fs.mkdir(localDirectory, { recursive: true });
         await downloadDirectory(user, repo, directoryPath, localDirectory);
@@ -43,14 +43,13 @@ async function ensureEssentialComponents(user, repo, baseLocalDirectory, additio
 async function add(args) {
     const componentName = args[1];
     const user = 'aidan-neel';
-    const repo = 'neel-ui';
-    const baseLocalDirectory = './src/lib/library';
+    const repo = 'neel-ui-dev';
+    const baseLocalDirectory = './app/src/lib/neel-ui';
     if (componentName === '*') {
         await fs.mkdir(baseLocalDirectory, { recursive: true });
-        const baseDirectoryPath = 'src/lib/library/components';
-        await downloadDirectory(user, repo, baseDirectoryPath, baseLocalDirectory);
+        await ensureEssentialComponents(user, repo, baseLocalDirectory);
     } else {
-        const directoryPath = `src/lib/components/neel-ui/${componentName}`;
+        const directoryPath = `app/src/lib/components/neel-ui/${componentName}`;
         const localDirectory = path.join(baseLocalDirectory, componentName);
         await fs.mkdir(localDirectory, { recursive: true });
         await downloadDirectory(user, repo, directoryPath, localDirectory);

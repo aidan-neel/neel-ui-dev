@@ -4,16 +4,15 @@ import path from 'path';
 import fetch from 'node-fetch';
 
 const user = 'aidan-neel';
-const repo = 'neel-ui';
+const repo = 'neel-ui-dev';
 const branch = 'main';
 
-// Define GitHub URLs for the templates at the top
-const tailwindConfigTemplateUrl = `https://raw.githubusercontent.com/${user}/${repo}/${branch}/tailwind.config.js`;
-const globalCssTemplateUrl = `https://raw.githubusercontent.com/${user}/${repo}/${branch}/src/global.css`;
-const utilsTsTemplateUrl = `https://raw.githubusercontent.com/${user}/${repo}/${branch}/src/lib/utils.ts`;
-const eventHandlerTsTemplateUrl = `https://raw.githubusercontent.com/${user}/${repo}/${branch}/src/lib/event-handler.ts`;
-
-console.log(tailwindConfigTemplateUrl);
+const eventTypesUrl = `https://raw.githubusercontent.com/${user}/${repo}/${branch}/app/src/lib/neel-ui/event-types.ts`;
+const stateUrl = `https://raw.githubusercontent.com/${user}/${repo}/${branch}/app/src/lib/neel-ui/state.ts`;
+const libraryCssUrl = `https://raw.githubusercontent.com/${user}/${repo}/${branch}/app/src/lib/neel-ui/library.css`;
+const transitionUrl = `https://raw.githubusercontent.com/${user}/${repo}/${branch}/app/src/lib/neel-ui/transition.ts`;
+const tailwindConfigUrl = `https://raw.githubusercontent.com/${user}/${repo}/${branch}/app/tailwind.config.cjs`;
+const utilsTsUrl = `https://raw.githubusercontent.com/${user}/${repo}/${branch}/app/src/lib/neel-ui/utils.ts`;
 
 async function init() {
     console.log("[*] Neel/UI [*]");
@@ -25,30 +24,37 @@ async function init() {
     });
 
     rl.question("Are you in your root SvelteKit folder? (y/n) ", async (answer) => {
-        const inRootFolder = answer.trim().toLowerCase() === 'y';
-        if (!inRootFolder) {
-            console.log('Please move the project to the root folder and try again.');
-            rl.close();
-            return;
-        }
+        rl.question("Are you sure you want to continue? This will overwrite your tailwind.config.cjs file. (y/n) ", async (answer) => {
+			if (answer === 'y') {
+				const inRootFolder = answer.trim().toLowerCase() === 'y';
+				if (!inRootFolder) {
+					console.log('Please move the project to the root folder and try again.');
+					rl.close();
+					return;
+				}
 
-        console.log('Great! You can proceed with the project setup.');
+				console.log('Great! You can proceed with the project setup.');
 
-        console.log("Creating neel-ui components folder...");
-        const dir = path.join(process.cwd(), 'src/lib/components/neel-ui');
-        fs.mkdirSync(dir, { recursive: true });
-        console.log('Folder created successfully.');
+				// Creating the directory for neel-ui files
+				const neelUiDir = path.join(process.cwd(), 'src/lib/neel-ui');
+				fs.mkdirSync(neelUiDir, { recursive: true });
+				console.log('neel-ui directory created successfully.');
 
-        await createOrUpdateFileFromUrl(tailwindConfigTemplateUrl, 'tailwind.config.js');
-        await createOrUpdateFileFromUrl(globalCssTemplateUrl, 'src/neel-ui.css');
-        await createOrUpdateFileFromUrl(utilsTsTemplateUrl, 'src/lib/utils.ts');
-        await createOrUpdateFileFromUrl(eventHandlerTsTemplateUrl, 'src/lib/event-handler.ts');
+				// Downloading and creating/updating files
+				await createOrUpdateFileFromUrl(eventTypesUrl, 'src/lib/neel-ui/event-types.ts');
+				await createOrUpdateFileFromUrl(stateUrl, 'src/lib/neel-ui/state.ts');
+				await createOrUpdateFileFromUrl(libraryCssUrl, 'src/lib/neel-ui/library.css');
+				await createOrUpdateFileFromUrl(transitionUrl, 'src/lib/neel-ui/transition.ts');
+				await createOrUpdateFileFromUrl(tailwindConfigUrl, 'tailwind.config.cjs');
 
-        // Add the dependencies to package.json
-        await addDependencies();
+				// Add the dependencies to package.json
+				await addDependencies();
 
-        console.log('Project setup completed.');
-        rl.close();
+				console.log('Project setup completed.');
+				rl.close();
+			}
+			rl.close();
+		});
     });
 }
 
@@ -60,24 +66,24 @@ async function createOrUpdateFileFromUrl(url, filePath) {
     console.log(`${filePath} created/updated successfully.`);
 }
 
+
 async function addDependencies() {
     const packageJsonPath = path.join(process.cwd(), 'package.json');
     if (!fs.existsSync(packageJsonPath)) {
         console.log('package.json not found, make sure you are in the root folder of your project.');
         return;
     }
-    
+
     const packageJsonContent = fs.readFileSync(packageJsonPath);
     const packageJson = JSON.parse(packageJsonContent);
 
     const dependenciesToAdd = {
-        "@k4ung/svelte-otp": "^0.0.9",
         "tailwind-merge": "^2.2.1",
         "tailwind-variants": "^0.1.20",
-        "vaul-svelte": "^0.2.3",
-        "radix-svelte": "^0.9.0",
         "fuse.js": "^7.0.0",
-        "clsx": "^2.1.0"
+		"lucide-svelte": "^0.365.0",
+        "clsx": "^2.1.0",
+		"@popperjs/core": "^2.11.8",
     };
 
     packageJson.dependencies = {
@@ -88,7 +94,6 @@ async function addDependencies() {
     fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2));
     console.log('Dependencies added to package.json successfully.');
 }
-
 // Exporting the module if needed, or just call `init()` directly if this script is meant to be executed as a standalone script.
 export default init;
 

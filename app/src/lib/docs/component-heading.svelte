@@ -13,12 +13,12 @@
     {description}
   </p>
   <div class="flex flex-row gap-3">
-    <div
+    <a href="https://github.com/aidan-neel/neel-ui-dev/tree/main/components/{component}"
       class="text-foreground-opposite bg-ghost-hovered px-3 text-sm flex flex-row items-center justify-center p-2 h-7 rounded-md"
     >
       <GitHub class="w-4 h-4 mr-2" />
       GitHub
-    </div>
+    </a>
     <slot name="references" />
   </div>
 </div>

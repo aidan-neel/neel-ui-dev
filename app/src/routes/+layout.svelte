@@ -11,7 +11,6 @@
 	onMount(() => {
 		const lightOrDarkModeLs = localStorage.getItem("theme") === "dark" ? "dark" : "light";
 		lightOrDarkMode.set(lightOrDarkModeLs);
-
 		document.body.classList.add(lightOrDarkModeLs);
 	})
 </script>
