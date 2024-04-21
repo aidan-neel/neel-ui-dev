@@ -1,7 +1,5 @@
-import Input from './input.svelte';
+import Input from "./input.svelte";
 
 export default Input;
 
-export {
-	Input
-}
+export { Input };

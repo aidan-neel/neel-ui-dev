@@ -1,7 +1,5 @@
-import Switch from './switch.svelte'
+import Switch from "./switch.svelte";
 
-export {
-    Switch
-}
+export { Switch };
 
 export default Switch;
