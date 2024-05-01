@@ -72,7 +72,7 @@
         --foreground: 240 2% 20%; /* Dark grey for text */
         --foreground-opposite: 0 0% 98%; /* White text */
         --foreground-disabled: 240 2% 70%; /* Light grey for disabled text */
-        --foreground-muted: 240 3% 40%; /* Muted text color */
+        --foreground-muted: 240 3% 50%; /* Muted text color */
 
         --border: 240 3% 80%; /* Light grey borders */
         --border-disabled: 240 5% 85%; /* Even lighter grey for disabled borders */

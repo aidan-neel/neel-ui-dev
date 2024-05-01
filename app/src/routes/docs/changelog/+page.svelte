@@ -65,6 +65,11 @@
             customizable, and performant. The new version is a complete rewrite
             of the library, with a focus on performance, accessibility, and
             developer experience.
+
+			<br><br>
+
+			Documentation on the state API and how we handle components will be released soon.
+			Currently, the API is kind of sloppy, since I wanted to get this out quickly. I will rework it slightly and then develop documentation.
         </p>
     </main>
     <div

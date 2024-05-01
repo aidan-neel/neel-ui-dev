@@ -12,5 +12,4 @@ export const components = [
     "switch",
     "select",
     "textarea",
-    "link-preview",
 ].sort();

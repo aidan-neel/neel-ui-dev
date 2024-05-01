@@ -24,6 +24,9 @@
             "Add Tailwind CSS",
             "Install Dependencies",
             "Setup Path Aliases",
+			"Initialize Neel UI",
+			"Import CSS File",
+			"Add a Component"
         ],
     };
 
@@ -40,16 +43,6 @@
     }
 
     $: scrollToHash();
-
-    let breeds = [
-        "Golden Retriever",
-        "Labrador Retriever",
-        "German Shepherd",
-        "French Bulldog",
-        "Bulldog",
-    ];
-
-    let selected;
 </script>
 
 <ComponentWrapper>
@@ -75,8 +68,10 @@
             <div
                 class={`mt-4 text-[16px] p-3 bg-[#0f0f10] font-mono overflow-auto border-default rounded-lg text-foreground-muted max-h-[30rem] w-full flex items-start justify-start`}
             >
-                <span class="text-white mr-2.5 pl-1">npm</span> create svelte@latest
-                my-app
+                <p>
+					<span class="text-white pl-1">npm</span> create svelte@latest
+					my-app
+				</p>
             </div>
         </div>
 
@@ -91,8 +86,28 @@
             <div
                 class={`mt-4 text-[16px] p-3 bg-[#0f0f10] font-mono overflow-auto border-default rounded-lg text-foreground-muted max-h-[30rem] w-full flex items-start justify-start`}
             >
-                <span class="text-white mr-2.5 pl-1">npx</span> svelte-add@latest
-                tailwindcss
+                <p>
+					<span class="text-white pl-1">npx</span> svelte-add@latest
+					tailwindcss
+				</p>
+            </div>
+        </div>
+
+		<div class="w-full my-4">
+            <h1 id="initialize neel ui" class="text-2xl font-semibold">
+                Initialize Neel UI
+            </h1>
+            <p class="text-lg my-3">
+                Using the `neel-ui` CLI, initialize it in your project.
+            </p>
+
+            <div
+                class={`mt-4 text-[16px] p-3 bg-[#0f0f10] font-mono overflow-auto border-default rounded-lg text-foreground-muted max-h-[30rem] w-full flex items-start justify-start`}
+            >
+                <p>
+					<span class="text-white pl-1">npx</span> neel-ui@latest
+					init
+				</p>
             </div>
         </div>
 
@@ -107,7 +122,9 @@
             <div
                 class={`mt-4 text-[16px] p-3 bg-[#0f0f10] font-mono overflow-auto border-default rounded-lg text-foreground-muted max-h-[30rem] w-full flex items-start justify-start`}
             >
-                <span class="text-white mr-2.5 pl-1">npm</span> install
+                <p>
+					<span class="text-white pl-1">npm</span> install
+				</p>
             </div>
         </div>
 
@@ -128,11 +145,50 @@
                     code={`kit: {
 	adapter: adapter(),
 	alias: {
-		$ui: "src/lib/library/components", // Add these lines
-		$library: "src/lib/library", // Add these lines
+		$ui: "src/lib/neel-ui/components", // Add these lines
+		$library: "src/lib/neel-ui", // Add these lines
 	},
 },`}
                 />
+            </div>
+        </div>
+
+		
+		<div class="w-full my-4">
+            <h1 id="import css file" class="text-2xl font-semibold">
+                Import CSS file
+            </h1>
+            <p class="text-lg my-3">
+                Import the `$library/library.css` file in your `+layout.svelte`.
+            </p>
+
+            <div
+                class={`mt-4 text-[16px] p-3 bg-[#0f0f10] font-mono overflow-auto border-default rounded-lg text-foreground-muted max-h-[30rem] w-full flex items-start justify-start`}
+            >
+                <CodeBlock
+                    class="py-0"
+                    code={`<script>
+	import '$library/library.css';
+</script>
+`}
+                />
+            </div>
+        </div>
+
+		<div class="w-full my-4">
+            <h1 id="add a component" class="text-2xl font-semibold">
+                Add a component of your choosing
+            </h1>
+            <p class="text-lg my-3">
+                Add as many as you want and you're finished!
+            </p>
+
+            <div
+                class={`mt-4 text-[16px] p-3 bg-[#0f0f10] font-mono overflow-auto border-default rounded-lg text-foreground-muted max-h-[30rem] w-full flex items-start justify-start`}
+            >
+                <p>
+					<span class="text-white pl-1">npx</span> neel-ui@latest add button
+				</p>
             </div>
         </div>
 
