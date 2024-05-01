@@ -47,7 +47,7 @@
                 </p>
             </header>
             <div
-                class="flex flex-col gap-4 items-center justify-center w-[92.5%] md:w-[80vw] md:grid md:grid-rows-4 md:grid-cols-4"
+                class="flex flex-col gap-4 items-center justify-center w-[92.5%] md:w-[80vw] md:grid md:grid-cols-4 grid-rows-2"
             >
                 <div
                     class="w-full items-center flex relative justify-center h-[20rem] bg-alternate-muted border-default rounded-lg"

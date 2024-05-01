@@ -21,7 +21,7 @@
             {data}
             class="justify-between px-3 flex flex-row sm:w-[225px] w-[45vw]"
         >
-            Select a breed
+            {selected || "Select a breed"}
             <ChevronDown class="w-4 h-4 ml-2" />
         </Button>
     </Select.Trigger>
